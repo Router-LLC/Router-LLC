@@ -11,17 +11,20 @@ const client = new pg.Client({ connectionString });
 client.connect();
 
 const pgController = {
-  postListItem: async (req, res, next) => {
-    const { listItem } = req.body;
-    const response = await client.query(
-      'INSERT INTO example_table (date, message)VALUES ($1, $2)',
-      [Date.now(), listItem]
-    );
-    console.log(response);
+  //functionality to post messages
+  postMessage: async (req, res, next) => {
+    // const { listItem } = req.body;
+    // const response = await client.query(
+    //   'INSERT INTO example_table (date, message)VALUES ($1, $2)',
+    //   [Date.now(), listItem]
+    // );
+    // console.log(response);
+    console.log('hello from pgController');
     return next();
   },
 
-  getList: async (req, res, next) => {
+  //functionality to get a train with its corresponding messages
+  getTrain: async (req, res, next) => {
     const response = await client.query('SELECT * FROM list');
     res.locals.list = response;
     return next();
@@ -38,7 +41,8 @@ const pgController = {
     return next();
   },
 
-  deleteListItem: async (req, res, next) => {
+  //functionality to delete messages
+  deleteMessage: async (req, res, next) => {
     const id = req.params.id;
     const response = await client.query(
       'DELETE FROM example_table WHERE id = 1;',
