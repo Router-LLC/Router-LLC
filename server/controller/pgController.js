@@ -43,11 +43,10 @@ const pgController = {
 
   //functionality to delete messages
   deleteMessage: async (req, res, next) => {
-    const id = req.params.id;
-    const response = await client.query(
-      'DELETE FROM example_table WHERE id = 1;',
-      [id]
-    );
+    const id = req.params._id;
+    const response = await client.query('DELETE FROM message WHERE _id = $1;', [
+      id,
+    ]);
     console.log(response);
     return next();
   },
