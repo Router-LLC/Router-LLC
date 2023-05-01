@@ -30,10 +30,13 @@ app.get('/', (req, res) => {
 //   return res.status(200).json({ recieved: true });
 // });
 
-app.delete('/message/:id', pgController.deleteMessage, (req, res) => {
-  return res.status(200).send('Message Deleted');
+app.get('/', pgController.getTrain, (req, res) => {
+	return res.status(200).send(res.locals.list.rows);
 });
 
+app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) => {
+	return res.status(200).send(res.locals.list.rows);
+});
 // app.patch('/list', pgController.updateList, (req, res) => {
 //   return res.status(200).json({ recieved: true });
 // });
@@ -42,6 +45,9 @@ app.delete('/message/:id', pgController.deleteMessage, (req, res) => {
 app.use('*', (req, res) => {
   return res.sendStatus(404);
 });
+// app.delete('/list/:id', pgController.deleteListItem, (req, res) => {
+// 	return res.status(200).json({ recieved: true });
+// });
 
 //global error handling
 app.use((err, req, res, next) => {
