@@ -1,15 +1,6 @@
-# 🚀 Welcome to your new awesome project!
+# Router LLC
 
-This project has been created using **webpack-cli**, you can now run
+## Don't ya hate when, as an esteemed rider of the MTA, you aren't up to date on your train status?
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+## Directions
+- NPM install and you're good to go!
